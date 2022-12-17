@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <!-- Main Section -->
+    <main class="home">
+        <section class="hero-section text-center">
+            <div class="container container--narrow">
+                <div class="hero-section__box">
+                    <h2>خوش آمدید<span> PMI Team </span>به سایت </h2>
+                </div>
+
+            </div>
+        </section>
+
+
+        {% load static %}
+        <section class="hero-section5 text-center" style="background-image: url('{% static 'images/pattern.jpg' %}')">
+            <div class="container container--narrow">
+
+                <a href="{% url 'login' %}" class="btn1 btn--sub btn--lg1">ثبت نام یا ورود</a>
+
+            </div>
+        </section>
+
+
+        <main/>
+{% endblock %}

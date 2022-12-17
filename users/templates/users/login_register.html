@@ -1,0 +1,103 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if page == 'register' %}
+
+ <div class="auth">
+      <div class="card">
+        <div class="auth__header text-center">
+          <a href="/">
+            <img src="{% static 'images/icon.svg' %}" alt="icon" />
+          </a>
+          <h3>ثبت نام</h3>
+          <p>یک اکانت هنرمندی بسازید</p>
+        </div>
+
+        <form method="post" action="{% url 'register' %}" class="form auth__form">
+         {% csrf_token %}
+
+            {% for field in form %}
+       <div class="form__field">
+            <label for="formInput#text">{{ field.label }}</label>
+       {{ field }}
+
+       <!-- {% if field.help_text %}
+           <small>{{  field.help_text}}</small>
+
+       {% endif %} -->
+
+       {% for error in field.errors %}
+           <p style="color: #993333">{{ error }}</p>
+
+           {% endfor %}
+
+          </div>
+            {% endfor %}
+
+
+          <div class="auth__actions">
+            <input class="btn btn--sub btn--lg" type="submit" value="ثبت نام" />
+          </div>
+        </form>
+        <div class="auth__alternative">
+          <p>اگر قبلا اکانت ساخته اید اینجا کلیک کنید!</p>
+          <a href="{% url 'login' %}">ورود</a>
+        </div>
+      </div>
+    </div>
+
+        {% else %}
+
+
+         <div class="auth">
+
+      <div class="card">
+
+        <div class="auth__header text-center">
+          <a href="/">
+            <img src="{%  static 'images/icon.svg' %}" alt="icon" />
+          </a>
+          <h3>ورود به اکانت</h3>
+          <p>سلام هنرمند عزیز، دوباره خوش اومدی</p>
+        </div>
+
+        <form action="{% url 'login' %}"  method="post" class="form auth__form">
+          {% csrf_token %}
+            <!-- Input:Username -->
+          <div class="form__field">
+            <label for="formInput#text">نام کاربری </label>
+            <input
+              class="input input--text"
+              id="formInput#text"
+              type="text"
+              name="username"
+              placeholder="نام کاربری خود را وارد کنید"
+            />
+          </div>
+
+          <!-- Input:Password -->
+          <div class="form__field">
+            <label for="formInput#password">رمز ورود: </label>
+            <input
+              class="input input--password"
+              id="formInput#passowrd"
+              type="password"
+              name="password"
+              placeholder="رمز عبور خود را وارد کنید"
+            />
+          </div>
+          <div class="auth__actions">
+            <input class="btn btn--sub btn--lg" type="submit" value="وارد شوید" />
+            <a href="forgetpassword.html"> آیا رمز خود را فراموش کردید؟اینجا کلیک کنید</a>
+          </div>
+        </form>
+        <div class="auth__alternative">
+          <a href="{% url 'register' %}">اگر اکانتی نساختید اینجا کلیک کنید!!!</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+{% endblock %}
