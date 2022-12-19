@@ -15,12 +15,17 @@
 
 
         {% load static %}
+
+
         <section class="hero-section5 text-center" style="background-image: url('{% static 'images/pattern.jpg' %}')">
+
+              {% if not request.user.is_authenticated %}
             <div class="container container--narrow">
 
                 <a href="{% url 'login' %}" class="btn1 btn--sub btn--lg1">ثبت نام یا ورود</a>
 
             </div>
+            {% endif %}
         </section>
 
 
